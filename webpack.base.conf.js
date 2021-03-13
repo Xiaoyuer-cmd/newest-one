@@ -36,35 +36,25 @@ module.exports = {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
-            {
+            { //ES6转化
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
             },
-            { //配置样式和页面中引入的photo解析器loader
+            { //配置样式和页面中引入的photo=>loader
                 test: /\.(png|svg|jpg|gif|woff|woff2|svg|eot|ttf)$/,
                 use: [{
                     loader: 'url-loader',
                     options: { //配置photo的选项
                         name: '[name].[ext]?[hash:8].jpg',
                         limit: 81920,
-                        // name:'[path]timg.jpg',//图片名称  //[path]为打包后会自动生成文件夹存放图片
-                        // name:'[hash]timg.jpg',// 设置[hash]
-                        // context:'/',// 设置context，即是配置打包后图片的存放路径
-                        // publicPath:'www.baidu.com',// 设置publicPath，即将图片发布到某个网站
                         outputPath: 'images', // 设置outputPath，即将图片存放到XXXX文件夹
-                    }
-                }]
-            },
-            { //配置页面引入的photo解析器loader
-                test: /\.(png|svg|jpg|gif|woff|woff2|svg|eot|ttf)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[path][name][hash:8].[ext]',
-                        publicPath: 'assets/', //为文件配置自定义 public 发布目录
-                        outputPath: 'images/', //为文件配置自定义 output 输出目录
-                        useRelativePath: true, //为每个文件生成一个相对 url 的 context 时，应该将其设置为 true
+                        /*
+                        name:'[path]timg.jpg',//图片名称  //[path]为打包后会自动生成文件夹存放图片
+                        name:'[hash]timg.jpg',// 设置[hash]
+                        context:'/',// 设置context，即是配置打包后图片的存放路径
+                        publicPath:'www.baidu.com',// 设置publicPath，即将图片发布到某个网站
+                        */
                     }
                 }]
             },
